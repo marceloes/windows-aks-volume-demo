@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: iiscorebox
+spec:
+  containers:
+    - name: myfrontend
+      image: mcr.microsoft.com/windows/servercore/iis:latest
+      volumeMounts:
+      - mountPath: "e:"
+        name: volume1
+  volumes:
+    - name: volume1
+      persistentVolumeClaim:
+        claimName: azure-managed-disk
