@@ -8,8 +8,13 @@ spec:
       image: mcr.microsoft.com/windows/servercore/iis:latest
       volumeMounts:
       - mountPath: "e:"
-        name: volume1
+        name: disk-volume1
+      - mountPath: "f:"
+        name: az-file-vol2
   volumes:
-    - name: volume1
+    - name: disk-volume1
       persistentVolumeClaim:
         claimName: azure-managed-disk
+    - name: az-file-vol2
+      persistentVolumeClaim:
+        claimName: azure-files      
