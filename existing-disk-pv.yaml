@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: azure-disk-pv
+spec:
+  capacity:
+    storage: 10Gi
+  storageClassName: static-disk
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  azureDisk:
+    kind: Managed
+    diskName: aksDisk
+    diskURI: /subscriptions/6975...4956/resourceGroups/aks-volume-demo-rg/providers/Microsoft.Compute/disks/aks-volume-demo-disk  
+             # Disk URI for the managed disk ($disk_resource_id from the setup script)

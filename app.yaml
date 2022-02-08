@@ -8,13 +8,26 @@ spec:
       image: mcr.microsoft.com/windows/servercore/iis:latest
       volumeMounts:
       - mountPath: "e:"
-        name: disk-volume1
+        name: dynamic-disk-volume
       - mountPath: "f:"
-        name: az-file-vol2
+        name: dynamic-az-file-vol
+      - mountPath: "g:"
+        name: static-az-file-vol
+      - mountPath: "h:"
+        name: static-disk-volume
   volumes:
-    - name: disk-volume1
+    - name: dynamic-disk-volume           #mount managed disk created dymanically
       persistentVolumeClaim:
         claimName: azure-managed-disk
-    - name: az-file-vol2
+    
+    - name: dynamic-az-file-vol           #mount azure file share created dymanically
       persistentVolumeClaim:
-        claimName: azure-files      
+        claimName: azure-files    
+    
+    - name: static-az-file-vol            #mount azure file share created statically
+      persistentVolumeClaim:
+        claimName: azurefilestatic
+    
+    - name: static-disk-volume            #mount managed disk created statically
+      persistentVolumeClaim:
+        claimName: azure-disk-pvc
